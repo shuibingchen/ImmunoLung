@@ -1,3 +1,6 @@
+### the processed seurat object is too big to save it here, so please download it from our google drive through this link:
+#  https://drive.google.com/file/d/10GO_GYqn2ZceVWcCNZS5WGxvuHIMWSxT/view?usp=drive_link
+
 ### setting and loading
 library(Seurat)
 library(future)
