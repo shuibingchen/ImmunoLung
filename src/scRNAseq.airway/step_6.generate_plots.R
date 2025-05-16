@@ -107,15 +107,12 @@ g <- my.dot.plot(seurat.obj=panc, genes=c("TNFRSF1B","IL1A","CCL20","IL1B","IL6"
                  cluster.id=1, name.order=c('ARTS','ARMS'))
 ggsave(file.path(figdir, "Fig.S5F.png"), plot=g, width=4.5, height=5, dpi=300)
 
-
-
-
-
-# Figure S6B:
+# Figure S8B:
 # Dot plot showing the differential signaling from macrophages to ciliated cells in 
 # hPSC-derived ARM+M and ARM+S conditions.
 g <- netVisual_bubble(cellchat.armm_arms, sources.use=c(5), targets.use = c(3), 
                       comparison = c(1,2), max.dataset = 2, 
                       title.name = "Increased signaling", 
                       angle.x = 45, remove.isolate = T, line.on=F)
-ggsave(file.path(figdir, "Fig.S6B.png"), width=3.5, height=9, dpi=300)
+ggsave(file.path(figdir, "Fig.S8B.png"), width=3.5, height=9, dpi=300)
+
