@@ -69,16 +69,17 @@ ggsave(file.path(figdir, "Fig.3D.png"), plot=g, width=4.5, height=3.5)
 
 # Figure 3E:
 # Dot plot analysis of SASP associate genes in AT2 cell cluster of hPSC-derived AVUM and AVPM organoids. 
-g <- my.dot.plot(seurat.obj=panc, genes=c("CSF2RB","CCL17","CSF3","IL1B","IL6","CXCL1","CCL27"), 
+g <- my.dot.plot(seurat.obj=panc, genes=c("CSF2RB","CCL17","CSF3","IL1B","IL6","CXCL1","CCL27",
+                                          "CXCL5","IGFBP3","CXCL2"), 
                  cluster.id=0, name.order=c('AVUM','AVPM'))
-ggsave(file.path(figdir, "Fig.3E.png"), plot=g, width=4.5, height=4)
+ggsave(file.path(figdir, "Fig.3E.png"), plot=g, width=5, height=4)
 
 # Figure 3F:
 # Dot plot analysis of senescence associate genes in AT2 cell cluster of hPSC-derived AVUM and AVPM organoids.
 g <- my.dot.plot(seurat.obj=panc, genes=c("ANAPC1","ANAPC16","CDK4","CDK6","ETS1","MAPK10","MAPKAPK2",
-                                          "MAPKAPK3","NFKB1","UBB"), 
+                                          "MAPKAPK3","NFKB1","UBB","TP53","CXCL8","SIRT1"), 
                  cluster.id=0, name.order=c('AVUM','AVPM'))
-ggsave(file.path(figdir, "Fig.3F.png"), plot=g, width=4.5, height=4)
+ggsave(file.path(figdir, "Fig.3F.png"), plot=g, width=5.5, height=4.5)
 
 # Figure 4A:
 # Dot plot showed the upregulated signals from macrophages to AT2 cells in 
@@ -89,17 +90,18 @@ g <- netVisual_bubble(cellchat.avum_avpm, sources.use=c(7), targets.use = c(2),
                       angle.x = 45, remove.isolate = T, line.on=F)
 ggsave(file.path(figdir, "Fig.4A.png"), width=3.5, height=4.5, dpi=300)
 
-# Figure S4B
+# Figure S6B
 # Individual UMAP of snRNA-seq and snATAC-seq of AVUM and AVPM macrophages.
 g <- myDimPlot3(tobj=panc, treduct="wnn.umap", tgroup_by="ident", tgroup_order=0:7, tsuffix="RNA_Cluster", 
                 tcolor=my.cluster.color, tsplit_by='Name', 
                 tsplit_order=c("AVUM","AVPM"), 
                 tlabel=T, tncol=2, tptsize=0.4, tlbsize=4) + theme(legend.position="none")
-ggsave(file.path(figdir, "Fig.S4B.png"), plot=g, width=8, height=4, dpi=300)
+ggsave(file.path(figdir, "Fig.S6B.png"), plot=g, width=8, height=4, dpi=300)
 
-# Figure S4C
+# Figure S6C
 # Dot plot analysis of fibrosis associated genes in fibroblast cluster of AVUM and AVPM conditions.
 g <- my.dot.plot(seurat.obj=panc, genes=c("HIF1A","SKP2","MTOR","CXCR4","S1PR2","IL10",
                                           "CFLAR","ITGB1","ITGA2","ACTA2"), 
                  cluster.id=6, name.order=c('AVUM','AVPM'))
-ggsave(file.path(figdir, "Fig.S4C.png"), plot=g, width=4.5, height=5)
+ggsave(file.path(figdir, "Fig.S6C.png"), plot=g, width=4.5, height=5)
+

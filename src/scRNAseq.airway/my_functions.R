@@ -404,3 +404,27 @@ my.dot.plot <- function(seurat.obj, genes, cluster.id=0, name.order=c('AVMM','AV
   # dot plot
   return(DotPlot(tseu, features=genes, group.by='Name') + coord_flip())
 }
+
+# calculate the fraction of overlapping marker genes in the reference data
+calOverlapFrac <- function(tref, tgenes){
+  return(length(intersect(tref, tgenes)) / length(tref))
+}
+
+# draw heatmap showing the fraction of overlapping marker genes between reference and our data
+plotFracOverlap <- function(trefList, tqryList, toutfile, width=6, height=5){
+  # calculate fraction matrix
+  fracMat <- matrix(nrow=length(tqryList), ncol=length(trefList))
+  colnames(fracMat) <- names(trefList)
+  rownames(fracMat) <- names(tqryList)
+  for (i in names(tqryList)){
+    for (j in names(trefList)){
+      fracMat[i,j] <- calOverlapFrac(trefList[[j]], tqryList[[i]])
+    }
+  }
+  # plot overlapping fraction matrix
+  # normalized fraction
+  pheatmap(fracMat, color=colorRampPalette(c("#4575B4", "#f7f7f7", "#D73027"))(100), cluster_rows=F, cluster_cols=F,
+           scale='row', show_rownames=T, show_colnames=T, fontsize=10,
+           filename=toutfile, width=width, height=height)
+}
+

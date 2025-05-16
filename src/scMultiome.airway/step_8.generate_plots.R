@@ -34,20 +34,20 @@ cellchat.arum_arpm <- readRDS(file.path(infodir, 'cellchat.arum_arpm.rds'))
 my.cluster.color <- brewer.pal(12,'Paired')[1:5]
 names(my.cluster.color) <- 0:4
 
-# Figure S5B: 
+# Figure S7B: 
 # UMAP of ARUM and ARPM organoids.
 g <- myDimPlot(tobj=panc, treduct="wnn.umap", tcate="ident", torder=0:4, 
                tcolor=my.cluster.color, tsuffix="Cluster", tlabel=TRUE, 
                tsplit=FALSE, tptsize=0.6)
-ggsave(file.path(figdir, "Fig.S5B.png"), plot=g, width=7.5, height=6.5, dpi=300)
+ggsave(file.path(figdir, "Fig.S7B.png"), plot=g, width=7.5, height=6.5, dpi=300)
 
-# Figure S5C:
+# Figure S7C:
 # UMAP of marker gene for each cluster of hPSC-derived immune-airway organoids.
 g <- FeaturePlot(panc, features=c("TUBA1A","KRT17","COL1A1","CD163"), 
                  reduction="wnn.umap", ncol=2)
-ggsave(file.path(figdir, "Fig.S5C.png"), plot=g, width=8.5, height=8, dpi=300)
+ggsave(file.path(figdir, "Fig.S7C.png"), plot=g, width=8.5, height=8, dpi=300)
 
-# Figure S5D:
+# Figure S7D:
 # UMAP projections of single-cell RNA (left) and ATAC (right) data of hPSC-derived immune-airway organoids,
 # with cells colored by cell types based on transcriptomic profiles. 
 p1 <- myDimPlot(tobj=panc, treduct="rna_umap", tcate="ident", torder=0:4, 
@@ -59,44 +59,45 @@ p2 <- myDimPlot(tobj=panc, treduct="atac_integrated_umap", tcate="ident", torder
                 tsplit=FALSE, tptsize=0.6) + theme(legend.position="bottom")
 
 g <- p1 | p2
-ggsave(file.path(figdir, "Fig.S5D.png"), plot=g, width=12.5, height=6.5, dpi=300)
+ggsave(file.path(figdir, "Fig.S7D.png"), plot=g, width=12.5, height=6.5, dpi=300)
 
-# Figure S5E:
+# Figure S7E:
 # Joint UMAP projections of RNA and ATAC data showing varied cell types under ARUM (left) and ARPM (right) conditions.
 g <- myDimPlot3(tobj=panc, treduct="wnn.umap", tgroup_by="ident", tgroup_order=0:4, 
                 tsuffix="RNA_Cluster", tcolor=my.cluster.color, 
                 tsplit_by='Name', tsplit_order=c("ARUM","ARPM"), 
                 tlabel=T, tncol=2, tptsize=0.4, tlbsize=4) + theme(legend.position="none")
-ggsave(file.path(figdir, "Fig.S5E.png"), plot=g, width=8, height=4, dpi=300)
+ggsave(file.path(figdir, "Fig.S7E.png"), plot=g, width=8, height=4, dpi=300)
 
-# Figure S5F:
+# Figure S7F:
 # Dot plot showing the expressions of pro-inflammatory macrophage associated genes in 
 # macrophage cell cluster of ARUM and ARPM organoids. 
 g <- my.dot.plot(seurat.obj=panc, genes=c("IL1B","IL6","CD80"), 
                  cluster.id=3, name.order=c('ARUM','ARPM'))
-ggsave(file.path(figdir, "Fig.S6F.png"), plot=g, width=4.5, height=3.5)
+ggsave(file.path(figdir, "Fig.S7F.png"), plot=g, width=4.5, height=3.5)
 
-# Figure S5G:
+# Figure S7G:
 # Dot plot showing the expressions of senescence associated genes in 
 # ciliated cell cluster of ARUM and ARPM organoids.
 g <- my.dot.plot(seurat.obj=panc, genes=c("ANAPC16","ANAPC7","ATM","BMI1","CCNE2","CDK4","CDKN2B",
                                           "HMGA2","MAPK14","MAPKAPK2","MAPKAPK3","NFKB1","RBBP7",
                                           "TERF1","TFDP1","TFDP2","TNRC6A","TP53"), 
                  cluster.id=0, name.order=c('ARUM','ARPM'))
-ggsave(file.path(figdir, "Fig.S6G.png"), plot=g, width=4.5, height=6.5)
+ggsave(file.path(figdir, "Fig.S7G.png"), plot=g, width=4.5, height=6.5)
 
-# Figure S5H:
+# Figure S7H:
 # Dot plot showing the expressions of senescence associated genes in 
 # ciliated cell cluster of ARUM and ARPM organoids. 
 g <- my.dot.plot(seurat.obj=panc, genes=c("TNFRSF1B","IL1A","CCL20","IL1B","IL6","XCL1","VCAM1",
                                           "CXCL5","PF4","CXCL1","SELL"), 
                  cluster.id=0, name.order=c('ARUM','ARPM'))
-ggsave(file.path(figdir, "Fig.S6H.png"), plot=g, width=4.5, height=5)
+ggsave(file.path(figdir, "Fig.S7H.png"), plot=g, width=4.5, height=5)
 
-# Figure S6A:
+# Figure S8A:
 # Dot plot showing the differential signaling from macrophages to ciliated cells in ARUM and ARPM organoids.
 g <- netVisual_bubble(cellchat.arum_arpm, sources.use=c(5), targets.use = c(3), 
                       comparison = c(1,2), max.dataset = 2, 
                       title.name = "Increased signaling", 
                       angle.x = 45, remove.isolate = T, line.on=F)
-ggsave(file.path(figdir, "Fig.S6A.png"), width=3.5, height=4, dpi=300)
+ggsave(file.path(figdir, "Fig.S8A.png"), width=3.5, height=4, dpi=300)
+

@@ -57,5 +57,12 @@ panc[["merged.cluster"]] <- final.clust
 # set final clusters
 Idents(panc) <- "merged.cluster"
 
+# identify marker genes for each cluster
+for (k in 0:6){
+  tmarkers <- FindMarkers(object=panc, ident.1=k, min.pct=0.25, test.use="wilcox", assay="RNA")
+  # write to file
+  write.table(as.data.frame(tmarkers), file=file.path(infodir, paste0("C", k, ".markers.txt")), quote=FALSE, na="", sep="\t", col.names=NA)
+}
+
 # save Seurat object
 saveRDS(panc, file.path(infodir, 'panc.rds'))
